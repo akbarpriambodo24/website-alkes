@@ -95,10 +95,10 @@ export default function CompanyProfilePage() {
                     <ol className="space-y-3">
                       {[
                         "Menyediakan produk alat kesehatan berkualitas tinggi dengan standar internasional",
-                        "Memberikan pelayanan prima dan solusi terbaik bagi seluruh mitra kerja",
-                        "Membangun jaringan distribusi yang kuat dan merata di seluruh Indonesia",
-                        "Mengembangkan sumber daya manusia yang profesional dan berdedikasi tinggi",
-                        "Berkontribusi dalam peningkatan kualitas layanan kesehatan nasional"
+                        "Mengembangkan SDM yang kompeten dan berintegritas",
+                        "Meningkatkan kepuasan pelanggan melalui pelayanan cepat, tepat, dan profesional",
+                        "Membangun kemitraan strategis dengan seluruh pemangku kepentingan",
+                        "Mengembangkan sistem yang modern dan terintegrasi"
                       ].map((misi, idx) => (
                         <li key={idx} className="flex items-start gap-3 text-amber-50 text-base leading-relaxed">
                           <span className="flex-shrink-0 w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs font-bold text-white mt-0.5">
@@ -146,8 +146,8 @@ export default function CompanyProfilePage() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                           </svg>
                         ),
-                        title: "Integritas",
-                        desc: "Menjalankan bisnis dengan jujur, transparan, dan bertanggung jawab",
+                        title: "Agile",
+                        desc: "Cepat, Lugas, Berani",
                         gradient: "from-emerald-400 to-teal-400"
                       },
                       {
@@ -156,8 +156,8 @@ export default function CompanyProfilePage() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                           </svg>
                         ),
-                        title: "Kualitas",
-                        desc: "Mengutamakan produk dan layanan berkualitas tinggi standar internasional",
+                        title: "Respect",
+                        desc: "Peduli, Harmony, Menghargai ",
                         gradient: "from-amber-400 to-orange-400"
                       },
                       {
@@ -166,8 +166,8 @@ export default function CompanyProfilePage() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                           </svg>
                         ),
-                        title: "Inovasi",
-                        desc: "Terus berinovasi untuk memberikan solusi kesehatan terbaik",
+                        title: "Integrity",
+                        desc: "Jujur, Transparan, Terbuka",
                         gradient: "from-purple-400 to-pink-400"
                       },
                       {
@@ -176,8 +176,8 @@ export default function CompanyProfilePage() {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                           </svg>
                         ),
-                        title: "Kolaborasi",
-                        desc: "Membangun kemitraan strategis untuk pertumbuhan bersama",
+                        title: "Fun",
+                        desc: "Semangat, Menyenangkan, antusias",
                         gradient: "from-blue-400 to-indigo-400"
                       }
                     ].map((value, idx) => (
