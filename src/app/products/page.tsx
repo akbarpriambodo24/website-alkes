@@ -5,7 +5,17 @@ import Image from 'next/image';
 import prisma from '@/lib/prisma';
 import { PageHero } from '@/components/PageHero';
 
-async function getProducts() {
+interface Product {
+  id: number;
+  name: string;
+  category: string;
+  price: string;
+  description: string | null;
+  image: string | null;
+  createdAt: Date;
+}
+
+async function getProducts(): Promise<Product[]> {
   const products = await prisma.product.findMany({
     orderBy: { createdAt: 'desc' },
   });
