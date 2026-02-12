@@ -47,7 +47,7 @@ export function Header() {
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
             <Image
-              src={isTransparent ? "/Logo lak transparan.png" : "/Logo Lak biru.avif"}
+              src={isTransparent ? "/Logo LAK transparan.png" : "/Logo Lak biru.avif"}
               alt="PT Lapan Alpha Kirana"
               width={200}
               height={130}
