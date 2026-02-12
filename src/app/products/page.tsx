@@ -76,6 +76,8 @@ export default async function ProductsPage() {
   );
 }
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Katalog Produk - PT Lapan Alpha Kirana',
   description: 'Lihat semua produk berkualitas kami.',
