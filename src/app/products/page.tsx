@@ -16,10 +16,15 @@ interface Product {
 }
 
 async function getProducts(): Promise<Product[]> {
-  const products = await prisma.product.findMany({
-    orderBy: { createdAt: 'desc' },
-  });
-  return products;
+  try {
+    const products = await prisma.product.findMany({
+      orderBy: { createdAt: 'desc' },
+    });
+    return products;
+  } catch {
+    console.error('Database connection failed');
+    return [];
+  }
 }
 
 export default async function ProductsPage() {
