@@ -19,7 +19,7 @@ export function PartnersSection() {
     { name: "Kannai", logo: "/logo kkp.png" },
     { name: "Bim", logo: "/logo bim.png" },
     { name: "Kreuz", logo: "/Logo Kreuz.png" },
-    { name: "Otani", logo: "/logo otani.png" },
+    { name: "Otani", logo: "/Logo otani.png" },
     { name: "Partner 12", logo: "/logo enesers.jpeg" },
   ];
 
