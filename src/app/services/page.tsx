@@ -35,15 +35,15 @@ export default function ServicesPage() {
       ]
     },
     {
-      title: "Training & Pelatihan",
-      slug: "training",
-      description: "Pelatihan penggunaan dan pemeliharaan alat kesehatan oleh tim ahli kami untuk memastikan operasional yang optimal dan aman di fasilitas kesehatan Anda.",
+      title: "Layanan Aftersales",
+      slug: "aftersales",
+      description: "Dukungan purna jual menyeluruh meliputi maintenance, perbaikan, kalibrasi, training penggunaan, dan penyediaan spare part untuk alat kesehatan Anda.",
       image: "/Stetoskop kompressed.jpeg",
       features: [
-        "Instruktur Bersertifikat",
-        "Modul Lengkap",
-        "Sertifikat Pelatihan",
-        "Follow-up Support"
+        "Preventive & Corrective Maintenance",
+        "Training Penggunaan Alat",
+        "Kalibrasi Berkala",
+        "Spare Part Original"
       ]
     }
   ];

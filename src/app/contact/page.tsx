@@ -246,8 +246,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="font-semibold text-lg mb-1">Telepon</p>
-                      <a href="tel:+62210000000" className="hover:text-gray-200 transition">
-                        (021) 0000000
+                      <a href="tel:+6221" className="hover:text-gray-200 transition">
+                        (021) 21689279 
                       </a>
                     </div>
                   </div>
@@ -262,7 +262,7 @@ export default function ContactPage() {
                     <div>
                       <p className="font-semibold text-lg mb-1">WhatsApp</p>
                       <a href="https://wa.me/6281200000000" target="_blank" rel="noopener noreferrer" className="hover:text-gray-200 transition">
-                        0812-0000-0000
+                        0821-1439-1159
                       </a>
                     </div>
                   </div>
@@ -277,46 +277,33 @@ export default function ContactPage() {
                     <div>
                       <p className="font-semibold text-lg mb-1">Jam Operasional</p>
                       <p>Senin - Jumat: 08.00 - 17.00 WIB</p>
-                      <p>Sabtu: 08.00 - 12.00 WIB</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Alamat */}
+              {/* Kenapa Hubungi Kami */}
               <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Alamat Kantor</h3>
-
-                <div className="space-y-6">
-                  {/* Head Office */}
-                  <div>
-                    <div className="flex items-center gap-2 mb-3">
-                      <svg className="w-5 h-5 text-[#2563eb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                      </svg>
-                      <h4 className="font-bold text-lg text-gray-900">Head Office</h4>
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Mengapa Menghubungi Kami?</h3>
+                <div className="space-y-5">
+                  {[
+                    { icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z", title: "Respons Cepat", desc: "Tim kami akan merespons pesan Anda dalam 1x24 jam kerja" },
+                    { icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z", title: "Tim Profesional", desc: "Didukung oleh tim berpengalaman di bidang alat kesehatan" },
+                    { icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z", title: "Konsultasi Gratis", desc: "Dapatkan konsultasi produk dan layanan tanpa biaya" },
+                    { icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4", title: "Jangkauan Nasional", desc: "Melayani seluruh wilayah Indonesia dari Sabang sampai Merauke" },
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                      <div className="w-10 h-10 bg-[#2563eb]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-[#2563eb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
+                        </svg>
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-900">{item.title}</p>
+                        <p className="text-sm text-gray-600 mt-1">{item.desc}</p>
+                      </div>
                     </div>
-                    <p className="text-gray-600 leading-relaxed">
-                      Menara Prima (Lantai 27 Unit D)<br />
-                      Jl. Dr. Ide Anak Agung Gde Agung Blok 6.2<br />
-                      Kawasan Mega Kuningan, Kuningan Timur<br />
-                      Jakarta Selatan, DKI Jakarta 12950
-                    </p>
-                  </div>
-
-                  <div className="border-t border-gray-200 pt-6">
-                    <div className="flex items-center gap-2 mb-3">
-                      <svg className="w-5 h-5 text-[#2563eb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                      </svg>
-                      <h4 className="font-bold text-lg text-gray-900">Warehouse & Showroom</h4>
-                    </div>
-                    <p className="text-gray-600 leading-relaxed">
-                      Jl. Tekno Boulevard No.5C<br />
-                      Tanjungsari, Cikarang Utara<br />
-                      Bekasi, Jawa Barat 17530
-                    </p>
-                  </div>
+                  ))}
                 </div>
               </div>
 

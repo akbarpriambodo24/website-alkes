@@ -16,34 +16,14 @@ export function AdvantagesSection() {
 
         {/* Gambar peta coverage */}
         <div className="max-w-6xl mx-auto">
-          <div className="relative w-full h-auto rounded-xl shadow-xl overflow-hidden bg-white p-4 border border-gray-100">
+          <div className="relative w-full h-auto rounded-2xl shadow-xl overflow-hidden bg-white p-6 md:p-8 border border-gray-100">
             <Image
-              src="/Peta coverage.png"
+              src="/peta 2.png"
               alt="Peta Coverage Area PT Lapan Alpha Kirana"
               width={1200}
               height={800}
               className="w-full h-auto object-contain"
             />
-          </div>
-
-          {/* Statistics */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-            <div className="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-t-4 border-blue-500">
-              <div className="text-4xl font-bold text-blue-600 mb-2">34</div>
-              <p className="text-gray-600 font-medium">Provinsi</p>
-            </div>
-            <div className="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-t-4 border-emerald-500">
-              <div className="text-4xl font-bold text-emerald-600 mb-2">100+</div>
-              <p className="text-gray-600 font-medium">Kota</p>
-            </div>
-            <div className="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-t-4 border-amber-500">
-              <div className="text-4xl font-bold text-amber-600 mb-2">24/7</div>
-              <p className="text-gray-600 font-medium">Support</p>
-            </div>
-            <div className="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-t-4 border-purple-500">
-              <div className="text-4xl font-bold text-purple-600 mb-2">Fast</div>
-              <p className="text-gray-600 font-medium">Delivery</p>
-            </div>
           </div>
         </div>
       </div>

@@ -37,7 +37,7 @@ export function Footer() {
                   </svg>
                   <div>
                     <p className="font-semibold text-emerald-300">Email</p>
-                    <a href="mailto:info@alkesindonesia.com" className="hover:text-emerald-400 transition-colors">info@lapanak.co.id</a>
+                    <a href="mailto:info@alapanak.co.id" className="hover:text-emerald-400 transition-colors">info@lapanak.co.id</a>
                   </div>
                 </li>
                 <li className="flex items-start gap-3 hover:translate-x-1 transition-transform">
@@ -45,8 +45,8 @@ export function Footer() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                   <div>
-                    <p className="font-semibold text-emerald-300">Telepon</p>
-                    <a href="tel:+62210000000" className="hover:text-emerald-400 transition-colors">(021) 0000000</a>
+                    <p className="font-semibold text-emerald-300">Telepon </p>
+                    <a href="tel:+62210000000" className="hover:text-emerald-400 transition-colors">(021) </a>21689279
                   </div>
                 </li>
                 <li className="flex items-start gap-3 hover:translate-x-1 transition-transform">
@@ -55,7 +55,7 @@ export function Footer() {
                   </svg>
                   <div>
                     <p className="font-semibold text-emerald-300">WhatsApp</p>
-                    <a href="https://wa.me/6281200000000" className="hover:text-emerald-400 transition-colors">0812-0000-0000</a>
+                    <a href="https://wa.me/6281200000000" className="hover:text-emerald-400 transition-colors">0821-1439-1159</a>
                   </div>
                 </li>
               </ul>
@@ -81,8 +81,8 @@ export function Footer() {
                   Jakarta Selatan, DKI Jakarta 12950
                 </p>
                 <div className="text-sm space-y-1 pt-3 border-t border-white/10">
-                  <p><span className="font-semibold text-emerald-300">Phone:</span> (021) 00000000</p>
-                  <p><span className="font-semibold text-emerald-300">Fax:</span> (021) 00000000</p>
+                  <p><span className="font-semibold text-emerald-300">Phone:</span> (021) 21689279</p>
+                  <p><span className="font-semibold text-emerald-300">Fax:</span> (021) 21689279</p>
                 </div>
               </div>
 
@@ -92,15 +92,15 @@ export function Footer() {
                   <svg className="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                   </svg>
-                  <p className="font-bold text-lg text-amber-300">Distribution Center</p>
+                  <p className="font-bold text-lg text-amber-300">Warehouse &</p>
                 </div>
                 <p className="text-sm leading-relaxed mb-3 text-gray-300">
-                  Jl. Tekno Boulevard No.5C<br />
-                  Tanjungsari, Cikarang Utara<br />
-                  Bekasi, Jawa Barat 17530
+                  Rukan Sentra Bisnis, Blok RSA 1 No 26,<br />
+                  Grand Galaxy, Bekasi Selatan.<br />
+                  Bekasi, Jawa Barat 17147
                 </p>
                 <div className="text-sm pt-3 border-t border-white/10">
-                  <p><span className="font-semibold text-emerald-300">Phone:</span> (021) 0000000</p>
+                  <p><span className="font-semibold text-emerald-300"></span></p>
                 </div>
               </div>
             </div>

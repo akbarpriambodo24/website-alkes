@@ -16,6 +16,11 @@ export function PartnersSection() {
     { name: "Sysmex", logo: "/partners/logo symmex.avif" },
     { name: "Kusuma", logo: "/partners/logo kusuma.avif" },
     { name: "MMT", logo: "/partners/logo mmt.avif" },
+    { name: "Kannai", logo: "/logo kkp.png" },
+    { name: "Bim", logo: "/logo bim.png" },
+    { name: "Kreuz", logo: "/Logo Kreuz.png" },
+    { name: "Otani", logo: "/logo otani.png" },
+    { name: "Partner 12", logo: "/logo enesers.jpeg" },
   ];
 
   const scroll = (direction: 'left' | 'right') => {
@@ -73,25 +78,24 @@ export function PartnersSection() {
                 style={{ width: '200px', minHeight: '120px' }}
               >
                 <div className="relative w-full h-full flex items-center justify-center">
-                  <Image
-                    src={partner.logo}
-                    alt={partner.name}
-                    width={200}
-                    height={100}
-                    className="object-contain w-full h-auto max-h-[80px] transition-all duration-300"
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                    }}
-                  />
-                  {/* Fallback placeholder */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-[.error]:opacity-100">
-                    <div className="w-10 h-10 bg-gradient-to-br from-[#d9dffe] to-[#b5c5fa] rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                      <svg className="w-5 h-5 text-[#2563eb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                      </svg>
+                  {partner.logo ? (
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      width={200}
+                      height={100}
+                      className="object-contain w-full h-auto max-h-[80px] transition-all duration-300"
+                    />
+                  ) : (
+                    <div className="flex flex-col items-center justify-center">
+                      <div className="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mb-2 group-hover:from-[#d9dffe] group-hover:to-[#b5c5fa] transition-all duration-300">
+                        <svg className="w-6 h-6 text-gray-400 group-hover:text-[#2563eb] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                      </div>
+                      <p className="text-xs text-gray-400 font-medium">Coming Soon</p>
                     </div>
-                    <p className="text-xs text-gray-500 font-medium text-center">{partner.name}</p>
-                  </div>
+                  )}
                 </div>
               </div>
             ))}

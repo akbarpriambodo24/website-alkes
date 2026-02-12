@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -27,7 +26,7 @@ export function Header() {
   const services = [
     { name: "KSO", href: "/services/kso" },
     { name: "Pengadaan Rutin", href: "/services/pengadaan-rutin" },
-    { name: "Training", href: "/services/training" }
+    { name: "Aftersales", href: "/services/aftersales" }
   ];
 
   const aboutMenuItems = [
@@ -46,13 +45,11 @@ export function Header() {
         {/* Logo */}
         <div className="flex items-center">
           <Link href="/" className="flex items-center">
-            <Image
-              src={isTransparent ? "/Logo LAK transparan.png" : "/Logo Lak biru.avif"}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={isTransparent ? "/Logo lak transparan.png" : "/logo lak biru transparan.png"}
               alt="PT Lapan Alpha Kirana"
-              width={200}
-              height={130}
               className="h-16 md:h-20 w-auto object-contain transition-opacity duration-300"
-              priority
             />
           </Link>
         </div>
