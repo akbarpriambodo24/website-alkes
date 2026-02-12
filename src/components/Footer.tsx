@@ -1,6 +1,5 @@
 // src/components/Footer.tsx
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { TechPattern } from './TechPattern';
 
@@ -18,12 +17,11 @@ export function Footer() {
           <div className="lg:col-span-5 flex flex-col md:flex-row items-start gap-8">
             {/* Logo */}
             <div className="flex-shrink-0 rounded-lg p-3 backdrop-blur-sm">
-              <Image
-                src="/logo LAK transparan.png"
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/Logo LAK transparan.png"
                 alt="PT Lapan Alpha Kirana"
-                width={140}
-                height={140}
-                className="w-auto h-auto object-contain"
+                className="w-32 h-auto object-contain"
               />
             </div>
 
