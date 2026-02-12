@@ -47,7 +47,7 @@ export function Header() {
           <Link href="/" className="flex items-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={isTransparent ? "/Logo lak transparan.png" : "/logo lak biru transparan.png"}
+              src={isTransparent ? "/Logo LAK transparan.png" : "/logo lak biru transparan.png"}
               alt="PT Lapan Alpha Kirana"
               className="h-16 md:h-20 w-auto object-contain transition-opacity duration-300"
             />
