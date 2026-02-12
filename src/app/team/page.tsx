@@ -174,52 +174,52 @@ export default function TeamPage() {
 
               <div className="grid lg:grid-cols-5 gap-0">
                 {/* Text Section - Left (3 columns) */}
-                <div className="lg:col-span-3 p-10 md:p-16 lg:p-20 flex flex-col justify-center order-2 lg:order-1 relative">
-                  <div className="space-y-8">
+                <div className="lg:col-span-3 p-6 md:p-16 lg:p-20 flex flex-col justify-center order-2 lg:order-1 relative">
+                  <div className="space-y-5 md:space-y-8">
                     {/* Name and Title */}
                     <div>
-                      <h3 className="text-4xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight">
+                      <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-3 md:mb-4 leading-tight">
                         {director.name}
                       </h3>
-                      <div className="flex items-center gap-4 mb-6">
+                      <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
                         <div className="flex items-center gap-2">
-                          <div className="h-1 w-16 bg-gradient-to-r from-[#2563eb] to-blue-400 rounded-full"></div>
+                          <div className="h-1 w-10 md:w-16 bg-gradient-to-r from-[#2563eb] to-blue-400 rounded-full"></div>
                           <div className="w-2 h-2 bg-[#2563eb] rounded-full"></div>
                         </div>
-                        <p className="text-2xl md:text-3xl text-[#2563eb] font-bold">
+                        <p className="text-xl md:text-2xl lg:text-3xl text-[#2563eb] font-bold">
                           {director.position}
                         </p>
                       </div>
                     </div>
 
                     {/* Description */}
-                    <p className="text-gray-600 text-xl leading-relaxed font-light">
+                    <p className="text-gray-600 text-base md:text-xl leading-relaxed font-light">
                       {director.description}
                     </p>
 
                     {/* Stats/Info Grid */}
-                    <div className="grid grid-cols-2 gap-6 pt-8">
-                      <div className="bg-gradient-to-br from-[#2563eb]/5 to-blue-50/50 rounded-2xl p-6 border border-[#2563eb]/10">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="w-10 h-10 bg-[#2563eb]/10 rounded-xl flex items-center justify-center">
-                            <svg className="w-5 h-5 text-[#2563eb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="grid grid-cols-2 gap-3 md:gap-6 pt-4 md:pt-8">
+                      <div className="bg-gradient-to-br from-[#2563eb]/5 to-blue-50/50 rounded-xl md:rounded-2xl p-4 md:p-6 border border-[#2563eb]/10">
+                        <div className="flex items-center gap-2 md:gap-3 mb-2">
+                          <div className="w-8 h-8 md:w-10 md:h-10 bg-[#2563eb]/10 rounded-lg md:rounded-xl flex items-center justify-center">
+                            <svg className="w-4 h-4 md:w-5 md:h-5 text-[#2563eb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                           </div>
-                          <p className="text-sm text-gray-500 uppercase tracking-wider font-semibold">Pengalaman</p>
+                          <p className="text-xs md:text-sm text-gray-500 uppercase tracking-wider font-semibold">Pengalaman</p>
                         </div>
-                        <p className="text-3xl font-bold text-gray-900">20+ Tahun</p>
+                        <p className="text-xl md:text-3xl font-bold text-gray-900">20+ Tahun</p>
                       </div>
-                      <div className="bg-gradient-to-br from-blue-50/50 to-[#2563eb]/5 rounded-2xl p-6 border border-[#2563eb]/10">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="w-10 h-10 bg-[#2563eb]/10 rounded-xl flex items-center justify-center">
-                            <svg className="w-5 h-5 text-[#2563eb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="bg-gradient-to-br from-blue-50/50 to-[#2563eb]/5 rounded-xl md:rounded-2xl p-4 md:p-6 border border-[#2563eb]/10">
+                        <div className="flex items-center gap-2 md:gap-3 mb-2">
+                          <div className="w-8 h-8 md:w-10 md:h-10 bg-[#2563eb]/10 rounded-lg md:rounded-xl flex items-center justify-center">
+                            <svg className="w-4 h-4 md:w-5 md:h-5 text-[#2563eb]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                             </svg>
                           </div>
-                          <p className="text-sm text-gray-500 uppercase tracking-wider font-semibold">Spesialisasi</p>
+                          <p className="text-xs md:text-sm text-gray-500 uppercase tracking-wider font-semibold">Spesialisasi</p>
                         </div>
-                        <p className="text-3xl font-bold text-gray-900">Healthcare</p>
+                        <p className="text-xl md:text-3xl font-bold text-gray-900">Healthcare</p>
                       </div>
                     </div>
                   </div>
@@ -227,10 +227,10 @@ export default function TeamPage() {
 
                 {/* Photo Section - Right (2 columns) - Clean, No Frame */}
                 <div className="lg:col-span-2 relative order-1 lg:order-2 bg-gradient-to-br from-gray-50 to-white">
-                  <div className="relative h-full min-h-[500px] lg:min-h-[700px]">
+                  <div className="relative h-full min-h-[350px] md:min-h-[500px] lg:min-h-[700px]">
                     {/* Photo container - Clean without decorative elements */}
-                    <div className="absolute inset-0 flex items-center justify-center p-8 md:p-12 lg:p-16">
-                      <div className="relative w-full max-w-lg aspect-[3/4]">
+                    <div className="absolute inset-0 flex items-center justify-center p-6 md:p-12 lg:p-16">
+                      <div className="relative w-full max-w-xs md:max-w-lg aspect-[3/4]">
                         {/* Main photo - No borders or frames */}
                         <Image
                           src={director.photo}

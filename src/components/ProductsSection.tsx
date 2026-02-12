@@ -32,12 +32,12 @@ export function ProductsSection() {
     {
       title: "Diagnostic Invitro",
       description: "Reagent, test kit, analyzer laboratorium, dan peralatan diagnostik in vitro",
-      image: "/mikroskop kompress.webp",
+      image: "/Mikroskop kompress.webp",
     },
     {
       title: "Lainnya",
       description: "Gas medis, peralatan penunjang, dan produk kesehatan lainnya",
-      image: "/produk lain lain.avif",
+      image: "/Produk lain lain.avif",
     },
   ];
 
