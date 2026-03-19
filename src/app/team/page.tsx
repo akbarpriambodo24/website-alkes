@@ -8,7 +8,7 @@ export default function TeamPage() {
   const komisaris = {
     name: "Ilham Imtiyaz Burhanuddin",
     position: "Komisaris",
-    photo: "/Foto Pak Ilham2.avif"
+    photo: "/Foto Ilham.avif"
   };
 
   const director = {

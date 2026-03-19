@@ -18,6 +18,7 @@ export function HeroSection() {
   }, []);
 
   return (
+    <>
     <section id="home" className="relative h-[85vh] -mt-20 pt-20 flex items-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
@@ -52,7 +53,7 @@ export function HeroSection() {
           </h1>
 
           {/* Description */}
-          
+
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -101,5 +102,17 @@ export function HeroSection() {
         </div>
       </div>
     </section>
+
+    {/* Idul Fitri Banner Section */}
+    <section className="relative h-[85vh] overflow-hidden">
+      <Image
+        src="/Hero idul fitri.jpeg"
+        alt="Hero Idul Fitri"
+        fill
+        className="object-cover"
+        sizes="100vw"
+      />
+    </section>
+    </>
   );
 }
