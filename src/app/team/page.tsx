@@ -8,13 +8,13 @@ export default function TeamPage() {
   const komisaris = {
     name: "Ilham Imtiyaz Burhanuddin",
     position: "Komisaris",
-    photo: "/Foto Ilham.avif"
+    photo: "/FOTO P. ILHAM.webp"
   };
 
   const director = {
     name: "Jimmy F Zega",
     position: "Direktur Utama",
-    photo: "/Foto P Jimmy.avif",
+    photo: "/FOTO P. JIMMY EDIT.webp",
     description: "Memimpin perusahaan dengan visi dan dedikasi tinggi"
   };
 
@@ -23,12 +23,12 @@ export default function TeamPage() {
     {
       name: "Arief Adityo Gumilang",
       position: "Direktur Operasional",
-      photo: "/Foto Arief web.avif"
+      photo: "/FOT P. ARIEF 2.webp"
     },
     {
       name: "Anggun Darani",
       position: "Direktur Pengembangan Bisnis",
-      photo: "/Foto Bu Anggun.avif"
+      photo: "/FOTO B. ANGGUN.webp"
     }
   ];
 
@@ -37,22 +37,22 @@ export default function TeamPage() {
     {
       name: "Aris Hamdanny",
       position: "General Manager",
-      photo: "/Foto P Danny2.avif"
+      photo: "/FOTO P. DANNY.webp"
     },
     {
       name: "Muhammad Syaiful Hidayat",
       position: "General Manager",
-      photo: "/Foto Syaiful4.avif"
+      photo: "/FOTO P. SYAIFUL.webp"
     },
     {
       name: "Nur Azis Pratama",
       position: "Manager Keuangan & Pajak",
-      photo: "/Foto Azis 2.avif"
+      photo: "/FOTO P. AZIS.webp"
     },
     {
       name: "Akbar Priambodo Riyono",
       position: "Bisnis Analis",
-      photo: "/Foto Akbar2.avif"
+      photo: "/FOTO P. AKBAR.webp"
     }
   ];
 
@@ -96,7 +96,7 @@ export default function TeamPage() {
                 <div className="relative overflow-hidden bg-gradient-to-br from-[#ecf0ff] via-[#e3eaff] to-[#d9dffe]">
                   <div className="relative w-full aspect-square">
                     <div className="absolute inset-0 p-6 flex items-center justify-center group-hover:scale-105 transition-transform duration-700">
-                      {komisaris.photo.startsWith('/Foto') ? (
+                      {komisaris.photo.match(/^\/(Foto|FOTO)/) ? (
                         <div className="relative w-full h-full rounded-xl overflow-hidden shadow-xl bg-white">
                           <Image
                             src={komisaris.photo}
@@ -278,7 +278,7 @@ export default function TeamPage() {
                   <div className="relative overflow-hidden bg-gradient-to-br from-[#ecf0ff] via-[#e3eaff] to-[#d9dffe]">
                     <div className="relative w-full aspect-square">
                       <div className="absolute inset-0 p-6 flex items-center justify-center group-hover:scale-105 transition-transform duration-700">
-                        {director.photo.startsWith('/Foto') ? (
+                        {director.photo.match(/^\/(Foto|FOTO)/) ? (
                           <div className="relative w-full h-full rounded-xl overflow-hidden shadow-xl bg-white">
                             <Image
                               src={director.photo}
@@ -368,7 +368,7 @@ export default function TeamPage() {
                   <div className="relative overflow-hidden bg-gradient-to-br from-[#ecf0ff] via-[#e3eaff] to-[#d9dffe]">
                     <div className="relative w-full aspect-square">
                       <div className="absolute inset-0 p-6 flex items-center justify-center group-hover:scale-105 transition-transform duration-700">
-                        {member.photo.startsWith('/Foto') ? (
+                        {member.photo.match(/^\/(Foto|FOTO)/) ? (
                           <div className="relative w-full h-full rounded-xl overflow-hidden shadow-xl bg-white">
                             <Image
                               src={member.photo}
