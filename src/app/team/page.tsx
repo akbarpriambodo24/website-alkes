@@ -23,7 +23,7 @@ export default function TeamPage() {
     {
       name: "Arief Adityo Gumilang",
       position: "Direktur Operasional",
-      photo: "/FOT P. ARIEF 2.webp"
+      photo: "/Foto Arief web.avif"
     },
     {
       name: "Anggun Darani",
