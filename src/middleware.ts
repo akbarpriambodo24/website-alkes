@@ -6,7 +6,7 @@ export function middleware(request: NextRequest) {
   const hostname = request.headers.get('host')
 
   // Domain utama yang ingin diindeks
-  const primaryDomain = 'alphakirana.co.id'
+  const primaryDomain = 'www.alphakirana.co.id'
 
   // Jika hostname bukan domain utama dan bukan localhost (untuk development)
   if (

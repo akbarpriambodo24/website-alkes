@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://alphakirana.co.id';
+  const baseUrl = 'https://www.alphakirana.co.id';
 
   // Daftar rute statis
   const staticRoutes = [

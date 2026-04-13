@@ -6,7 +6,7 @@ import { Footer } from '@/components/Footer';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://alphakirana.co.id'),
+  metadataBase: new URL('https://www.alphakirana.co.id'),
   title: {
     default: 'PT Lapan Alpha Kirana',
     template: '%s | PT Lapan Alpha Kirana'
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'PT Lapan Alpha Kirana',
     description: 'Distributor alat kesehatan terpercaya di Indonesia.',
-    url: 'https://alphakirana.co.id',
+    url: 'https://www.alphakirana.co.id',
     siteName: 'PT Lapan Alpha Kirana',
     locale: 'id_ID',
     type: 'website',
