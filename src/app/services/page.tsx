@@ -4,8 +4,11 @@ import { PageHero } from "@/components/PageHero";
 import { TechPattern } from "@/components/TechPattern";
 
 export const metadata = {
-  title: 'Layanan Kami - PT Lapan Alpha Kirana',
+  title: 'Layanan Kami',
   description: 'Layanan profesional distribusi alat kesehatan untuk rumah sakit, klinik, dan laboratorium di seluruh Indonesia.',
+  alternates: {
+    canonical: '/services',
+  },
 };
 
 export default function ServicesPage() {
