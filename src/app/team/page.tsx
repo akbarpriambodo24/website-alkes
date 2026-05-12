@@ -1,8 +1,7 @@
 'use client';
 
 import Image from "next/image";
-import { TechPattern } from "@/components/TechPattern";
-import { PageHero } from "@/components/PageHero";
+import { PageHeader } from "@/components/PageHeader";
 
 export default function TeamPage() {
   const komisaris = {
@@ -59,11 +58,10 @@ export default function TeamPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <PageHero
+      <PageHeader
         title="Tim Kepemimpinan"
         subtitle="Dipimpin oleh profesional berpengalaman yang berkomitmen untuk menghadirkan solusi alat kesehatan berkualitas tinggi di seluruh Indonesia"
         badge="TIM KAMI"
-        backgroundImage="/Foto bersama2.avif"
       />
 
       {/* Main Content */}

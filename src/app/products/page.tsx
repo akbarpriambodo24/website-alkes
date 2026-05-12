@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import prisma from '@/lib/prisma';
-import { PageHero } from '@/components/PageHero';
+import { PageHeader } from '@/components/PageHeader';
 
 interface Product {
   id: number;
@@ -33,11 +33,10 @@ export default async function ProductsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <PageHero
+      <PageHeader
         title="Katalog Produk"
         subtitle="Peralatan medis berkualitas tinggi, bersertifikat, dan terjamin untuk rumah sakit, klinik, dan laboratorium di seluruh Indonesia"
         badge="PRODUK BERKUALITAS"
-        backgroundImage="/Mikroskop kompress.webp"
       />
 
       {/* List Produk */}

@@ -6,6 +6,7 @@ import { ProductsSection } from '@/components/ProductsSection';
 import { ServicesSection } from '@/components/ServicesSection';
 import { AdvantagesSection } from '@/components/AdvantagesSection';
 import { PartnersSection } from '@/components/PartnersSection';
+import { NewsSection } from '@/components/NewsSection';
 
 export const metadata: Metadata = {
   title: 'Beranda | PT Lapan Alpha Kirana',
@@ -19,6 +20,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <NewsSection />
       <ProductsSection />
       <ServicesSection />
       <AdvantagesSection />

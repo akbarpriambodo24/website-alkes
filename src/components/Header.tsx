@@ -198,6 +198,13 @@ export function Header() {
             )}
           </div>
 
+          <Link href="/news" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#2563eb] transition-colors hidden md:block">
+            Berita
+          </Link>
+          <Link href="/news" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#2563eb] transition-colors md:hidden text-gray-700">
+            Berita
+          </Link>
+
           <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="hover:text-[#2563eb] transition-colors">
             Kontak
           </Link>
