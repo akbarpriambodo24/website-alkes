@@ -201,8 +201,9 @@ export default function CompanyProfilePage() {
               </p>
             </div>
             <a
-              href="/company-profile.pdf"
-              download="PT_Lapan_Alpha_Kirana_Company_Profile.pdf"
+              href="https://drive.google.com/uc?export=download&id=1JhBwGGwiMtEj5Sag77BKLP50I2tvD76e"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-8 py-4 bg-[#2563eb] text-white rounded-xl font-bold hover:bg-[#1d4ed8] transition-all duration-300 shadow-lg hover:shadow-[#2563eb]/30 hover:shadow-xl shrink-0"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
