@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Katalog Produk — PT Lapan Alpha Kirana</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1e3a8a;
+      --blue: #2563eb;
+      --blue-light: #3b82f6;
+      --blue-50: #eff6ff;
+      --blue-100: #dbeafe;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-400: #94a3b8;
+      --slate-500: #64748b;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--slate-50);
+      color: var(--slate-800);
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--slate-900);
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 3px rgba(0,0,0,.3);
+    }
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .header-logo {
+      width: 44px;
+      height: 44px;
+      background: var(--blue);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .header-logo svg { width: 22px; height: 22px; color: white; }
+    .header-text h1 {
+      font-size: 17px;
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+    }
+    .header-text p {
+      font-size: 12px;
+      color: var(--slate-400);
+      margin-top: 1px;
+    }
+
+    /* ── Controls ── */
+    .controls-bar {
+      background: white;
+      border-bottom: 1px solid var(--slate-200);
+      position: sticky;
+      top: 77px;
+      z-index: 90;
+    }
+    .controls-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .search-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 220px;
+    }
+    .search-wrap svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      color: var(--slate-400);
+      pointer-events: none;
+    }
+    .search-input {
+      width: 100%;
+      padding: 9px 12px 9px 38px;
+      border: 1px solid var(--slate-200);
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--slate-800);
+      background: var(--slate-50);
+      outline: none;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .search-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+      background: white;
+    }
+    .filter-select {
+      padding: 9px 36px 9px 12px;
+      border: 1px solid var(--slate-200);
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--slate-700);
+      background: var(--slate-50);
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 16px;
+      outline: none;
+      cursor: pointer;
+      transition: border-color .15s, box-shadow .15s;
+      min-width: 180px;
+    }
+    .filter-select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+      background-color: white;
+    }
+    .count-badge {
+      font-size: 13px;
+      color: var(--slate-500);
+      white-space: nowrap;
+      margin-left: auto;
+    }
+    .count-badge strong { color: var(--navy); font-weight: 700; }
+
+    /* ── Main content ── */
+    .main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 28px 24px 60px;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: white;
+      border: 1px solid var(--slate-200);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: box-shadow .2s, transform .2s, border-color .2s;
+    }
+    .card:hover {
+      box-shadow: 0 8px 24px rgba(30,58,138,.1);
+      border-color: var(--blue-100);
+      transform: translateY(-2px);
+    }
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--blue-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .card-icon svg { width: 20px; height: 20px; color: var(--navy); }
+    .card-meta { flex: 1; min-width: 0; }
+    .supplier-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: var(--blue-50);
+      border: 1px solid var(--blue-100);
+      padding: 2px 8px;
+      border-radius: 100px;
+      margin-bottom: 6px;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .card-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--slate-900);
+      line-height: 1.45;
+    }
+
+    /* ── Price ── */
+    .price-row {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-100);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .price-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--slate-400);
+      margin-bottom: 3px;
+    }
+    .price-value {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+      letter-spacing: -.01em;
+    }
+    .price-value.unavailable {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--slate-400);
+    }
+
+    /* ── Prodia volumes ── */
+    .prodia-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .volume-box {
+      background: #f0f4ff;
+      border: 1px solid #c7d7f9;
+      border-radius: 8px;
+      padding: 8px 10px;
+    }
+    .volume-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 2px;
+    }
+    .volume-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--slate-700);
+    }
+
+    /* ── CTA button ── */
+    .btn-catalog {
+      display: block;
+      width: 100%;
+      padding: 9px 16px;
+      background: var(--navy);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background .15s;
+      margin-top: auto;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-catalog:hover { background: #142d54; }
+    .btn-catalog.disabled {
+      background: var(--slate-200);
+      color: var(--slate-400);
+      cursor: default;
+    }
+
+    /* ── States ── */
+    .state-wrapper {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+      text-align: center;
+      gap: 12px;
+    }
+    .state-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: var(--slate-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+    .state-icon svg { width: 28px; height: 28px; color: var(--slate-400); }
+    .state-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--slate-700);
+    }
+    .state-sub {
+      font-size: 14px;
+      color: var(--slate-400);
+      max-width: 300px;
+      line-height: 1.55;
+    }
+
+    /* Loading spinner */
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid var(--blue-100);
+      border-top-color: var(--blue);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .controls-inner { padding: 12px 16px; gap: 8px; }
+      .main { padding: 20px 16px 48px; }
+      .count-badge { width: 100%; margin-left: 0; }
+      .filter-select { min-width: 0; flex: 1; }
+      .header-inner { padding: 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"
+            d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+        </svg>
+      </div>
+      <div class="header-text">
+        <h1>Katalog Produk</h1>
+        <p>PT Lapan Alpha Kirana — E-Katalog Alat Kesehatan</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Controls -->
+  <div class="controls-bar">
+    <div class="controls-inner">
+      <div class="search-wrap">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+        <input id="searchInput" class="search-input" type="text"
+          placeholder="Cari nama produk…" autocomplete="off" />
+      </div>
+      <select id="supplierFilter" class="filter-select">
+        <option value="">Semua Supplier</option>
+      </select>
+      <div class="count-badge" id="countBadge">
+        Memuat data…
+      </div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="grid" id="productGrid">
+      <!-- Loading state -->
+      <div class="state-wrapper" id="loadingState">
+        <div class="spinner"></div>
+        <p class="state-title">Memuat katalog…</p>
+        <p class="state-sub">Mengambil data dari Google Sheets</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vReCltludT9RnNeS64XOJ8shclAb1Ca1GSgjXhJcN6p6yKV6MCpacQCY8s_tisDI_-9pmCOs_NcbawT/pub?output=csv';
+
+    let allProducts = [];
+
+    /* ── Column name normaliser ── */
+    function norm(str) {
+      return (str || '').toString().trim().toLowerCase().replace(/\s+/g, ' ');
+    }
+
+    /* ── Find column value with fuzzy key matching ── */
+    function col(row, ...keys) {
+      for (const key of keys) {
+        for (const k of Object.keys(row)) {
+          if (norm(k).includes(norm(key))) return (row[k] || '').toString().trim();
+        }
+      }
+      return '';
+    }
+
+    /* ── Format Rupiah ── */
+    function toRupiah(raw) {
+      const clean = raw.replace(/[^\d,.-]/g, '').replace(/,/g, '').split('.')[0];
+      const num = parseInt(clean, 10);
+      if (isNaN(num) || num === 0) return null;
+      return 'Rp ' + num.toLocaleString('id-ID');
+    }
+
+    /* ── Detect Prodia row ── */
+    function isProdia(row) {
+      const supplier = col(row, 'supplier', 'principal', 'merek', 'brand', 'distributor', 'penyedia');
+      const nama = col(row, 'nama produk', 'produk', 'name', 'item');
+      return /prodia/i.test(supplier) || /prodia/i.test(nama);
+    }
+
+    /* ── Build card HTML ── */
+    function buildCard(p) {
+      const priceFormatted = p.price ? p.price : null;
+      const hasLink = !!p.link;
+
+      const volHtml = p.showVolumes ? `
+        <div class="prodia-row">
+          <div class="volume-box">
+            <div class="volume-label">Volume R1</div>
+            <div class="volume-value">${p.vol1 || '—'}</div>
+          </div>
+          <div class="volume-box">
+            <div class="volume-label">Volume R2</div>
+            <div class="volume-value">${p.vol2 || '—'}</div>
+          </div>
+        </div>` : '';
+
+      const btnHtml = hasLink
+        ? `<a class="btn-catalog" href="${escHtml(p.link)}" target="_blank" rel="noopener noreferrer">Lihat E-Katalog ↗</a>`
+        : `<button class="btn-catalog disabled" disabled>Lihat E-Katalog</button>`;
+
+      return `
+        <article class="card">
+          <div class="card-top">
+            <div class="card-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"
+                  d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/>
+              </svg>
+            </div>
+            <div class="card-meta">
+              ${p.supplier ? `<div class="supplier-tag">${escHtml(p.supplier)}</div>` : ''}
+              <div class="card-name">${escHtml(p.name)}</div>
+            </div>
+          </div>
+
+          <div class="price-row">
+            <div class="price-label">Harga E-Katalog (Inc. PPN)</div>
+            ${priceFormatted
+              ? `<div class="price-value">${priceFormatted}</div>`
+              : `<div class="price-value unavailable">Harga tidak tersedia</div>`}
+          </div>
+
+          ${volHtml}
+          ${btnHtml}
+        </article>`;
+    }
+
+    function escHtml(str) {
+      return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    /* ── Render visible products ── */
+    function render() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const supplier = document.getElementById('supplierFilter').value;
+
+      const filtered = allProducts.filter(p => {
+        const matchName = !query || p.name.toLowerCase().includes(query);
+        const matchSupplier = !supplier || p.supplier === supplier;
+        return matchName && matchSupplier;
+      });
+
+      const grid = document.getElementById('productGrid');
+      const badge = document.getElementById('countBadge');
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="state-wrapper">
+            <div class="state-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"
+                  d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <p class="state-title">Produk tidak ditemukan</p>
+            <p class="state-sub">Coba kata kunci atau filter yang berbeda</p>
+          </div>`;
+        badge.innerHTML = '<strong>0</strong> produk';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(buildCard).join('');
+      badge.innerHTML = `<strong>${filtered.length}</strong> dari <strong>${allProducts.length}</strong> produk`;
+    }
+
+    /* ── Parse & load ── */
+    function parseProducts(rows) {
+      if (!rows.length) return [];
+
+      const products = rows
+        .filter(row => {
+          const name = col(row, 'nama produk', 'produk', 'name', 'item', 'nama');
+          return name.length > 1;
+        })
+        .map(row => {
+          const name     = col(row, 'nama produk', 'produk', 'name', 'item', 'nama');
+          const supplier = col(row, 'supplier', 'principal', 'merek', 'brand', 'distributor', 'penyedia', 'vendor');
+          const rawPrice = col(row, 'harga e-katalog', 'harga ekatalog', 'harga', 'price', 'harga (inc ppn)', 'harga inc ppn');
+          const link     = col(row, 'link e-katalog', 'link ekatalog', 'url ekatalog', 'url', 'link', 'e-katalog');
+          const vol1     = col(row, 'volume r1', 'vol r1', 'r1');
+          const vol2     = col(row, 'volume r2', 'vol r2', 'r2');
+
+          return {
+            name,
+            supplier,
+            price: rawPrice ? toRupiah(rawPrice) : null,
+            link: /^https?:\/\//i.test(link) ? link : null,
+            showVolumes: isProdia(row) && (vol1 || vol2),
+            vol1,
+            vol2,
+          };
+        });
+
+      return products;
+    }
+
+    /* ── Populate supplier dropdown ── */
+    function populateSuppliers(products) {
+      const suppliers = [...new Set(products.map(p => p.supplier).filter(Boolean))].sort();
+      const sel = document.getElementById('supplierFilter');
+      suppliers.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s;
+        opt.textContent = s;
+        sel.appendChild(opt);
+      });
+    }
+
+    /* ── Fetch ── */
+    Papa.parse(CSV_URL, {
+      download: true,
+      header: true,
+      skipEmptyLines: true,
+      complete(results) {
+        allProducts = parseProducts(results.data);
+        populateSuppliers(allProducts);
+
+        document.getElementById('searchInput').addEventListener('input', render);
+        document.getElementById('supplierFilter').addEventListener('change', render);
+
+        render();
+      },
+      error(err) {
+        document.getElementById('productGrid').innerHTML = `
+          <div class="state-wrapper">
+            <div class="state-icon">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <p class="state-title">Gagal memuat data</p>
+            <p class="state-sub">Pastikan spreadsheet sudah dipublikasikan sebagai CSV dan coba refresh halaman.</p>
+          </div>`;
+        document.getElementById('countBadge').innerHTML = 'Gagal memuat';
+      }
+    });
+  </script>
+</body>
+</html>
