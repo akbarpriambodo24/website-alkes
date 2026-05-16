@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: `${item.title} | PT Lapan Alpha Kirana`,
     description: item.excerpt,
+    alternates: { canonical: `/news/${item.slug}` },
   };
 }
 
