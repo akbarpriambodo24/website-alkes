@@ -23,14 +23,14 @@ export function ServicesSection() {
               </span>
             </div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Yang Kami Kerjakan</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Layanan Kami</h2>
           <div className="flex items-center justify-center gap-2 mb-4">
             <div className="h-px w-24 bg-[#1e3a8a]/30 rounded-full" />
             <div className="w-2 h-2 bg-[#1e3a8a] rounded-full" />
             <div className="h-px w-24 bg-[#1e3a8a]/30 rounded-full" />
           </div>
           <p className="text-gray-500 text-lg max-w-3xl mx-auto">
-            Kami tidak jual semua. Fokus pada yang kami kuasai.
+            
           </p>
         </div>
 
@@ -58,8 +58,7 @@ export function ServicesSection() {
                 <p className="text-slate-600 text-base leading-relaxed mb-8">
                   Ada tiga hal yang bisa kami bantu: KSO untuk pengadaan alat tanpa beli
                   langsung, pengadaan rutin dan berkala, serta training dan instalasi alat.
-                  Klien kami dari RS besar, klinik swasta, sampai puskesmas — di berbagai
-                  kota dari Jawa, Kalimantan, Sulawesi, sampai Papua.
+                  
                 </p>
 
                 {/* Features */}

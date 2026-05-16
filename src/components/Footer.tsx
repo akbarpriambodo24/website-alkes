@@ -28,7 +28,7 @@ export function Footer() {
                   </svg>
                   <div>
                     <p className="text-slate-400 text-xs uppercase tracking-wider mb-0.5">Email</p>
-                    <a href="mailto:info@lapanak.co.id" className="text-slate-200 hover:text-white transition-colors">info@lapanak.co.id</a>
+                    <a href="mailto:info@lapanak.co.id" className="text-slate-200 hover:text-white transition-colors">info@alphakirana.co.id</a>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">

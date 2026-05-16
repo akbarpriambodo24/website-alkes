@@ -10,7 +10,7 @@ export function AdvantagesSection() {
           </h2>
           <div className="w-12 h-1 bg-[#1e3a8a] mx-auto mb-4 rounded-full" />
           <p className="text-lg text-gray-500 max-w-3xl mx-auto">
-            Ada 10 perwakilan kami yang tersebar di seluruh Indonesia. Ini gambaran wilayah cakupannya.
+            Memiliki 10 Perwakilan yang menjangkau seluruh wilayah Indonesia
           </p>
         </div>
 

@@ -14,21 +14,21 @@ export function ContactSection() {
                 <span className="text-2xl">📧</span>
                 <div>
                   <p className="font-semibold text-gray-900">Email</p>
-                  <p>info@alkesindonesia.com</p>
+                  <p>info@alphakirana.co.id</p>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
                 <span className="text-2xl">☎️</span>
                 <div>
                   <p className="font-semibold text-gray-900">Telepon</p>
-                  <p>(021) 1234-5678</p>
+                  <p>(0821-1439-1159)</p>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
                 <span className="text-2xl">📱</span>
                 <div>
                   <p className="font-semibold text-gray-900">WhatsApp</p>
-                  <p>0812-3456-7890</p>
+                  <p>0821-1439-1159</p>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
