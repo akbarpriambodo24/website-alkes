@@ -55,11 +55,11 @@ export function ProductsSection() {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Grup Produk Kami
+            Produk Kami
           </h2>
           <div className="w-12 h-1 bg-[#1e3a8a] mx-auto mb-4 rounded-full" />
           <p className="text-gray-500 text-lg max-w-3xl mx-auto">
-            Ini kategori alat yang kami distribusikan — dari elektromedis, diagnostik, sampai kebutuhan sekali pakai.
+            
           </p>
         </div>
 
