@@ -19,8 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const newsRoutes: MetadataRoute.Sitemap = newsItems.map((item) => ({
     url: `${BASE}/news/${item.slug}`,
-    lastModified: new Date(item.date),
-    changeFrequency: 'monthly',
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
 
