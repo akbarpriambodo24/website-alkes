@@ -1,25 +1,40 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import Papa from 'papaparse';
 
 const CSV_URL =
-  'https://docs.google.com/spreadsheets/d/e/2PACX-1vReCltludT9RnNeS64XOJ8shclAb1Ca1GSgjXhJcN6p6yKV6MCpacQCY8s_tisDI_-9pmCOs_NcbawT/pub?output=csv';
+  'https://docs.google.com/spreadsheets/d/e/2PACX-1vSkGkYqtH_XJ5DQeB9BYgtgVgezAhDnc1VH8c0KkdEeOIKDV_7oSuBlGLiC08NRyS1lK3cByACtgMFQ/pub?output=csv';
+
+const ROOMS = [
+  'UGD',
+  'R. Admin',
+  'ICU',
+  'OK (R.Oprasi)',
+  'Rawat Inap',
+  'Radiologi',
+  'Laboratorium',
+  'CSSD / Laundry',
+  'Farmasi',
+  'Hemodialisa',
+  'Ruang Jenazah',
+  'Cath Lab',
+  'R. Dapur dan Gizi',
+  'IPSRS',
+  'Lain - Lain',
+] as const;
 
 interface Product {
   no: number;
   supplier: string;
-  kategori: string;
   name: string;
-  satuan: string;
-  vol1: string;
-  vol2: string;
   hargaInc: string | null;
   link: string | null;
+  rooms: string[];
 }
 
-function exactCol(row: Record<string, string>, exact: string): string {
-  const target = exact.toLowerCase();
+function getCol(row: Record<string, string>, key: string): string {
+  const target = key.toLowerCase();
   for (const k of Object.keys(row)) {
     if (k.toLowerCase() === target) return (row[k] || '').trim();
   }
@@ -30,35 +45,32 @@ function toRupiah(raw: string): string | null {
   const clean = raw.replace(/[^\d]/g, '');
   const num = parseInt(clean, 10);
   if (isNaN(num) || num === 0) return null;
-  return 'Rp ' + num.toLocaleString('id-ID');
+  return 'Rp ' + num.toLocaleString('id-ID');
 }
 
 function parseRows(rows: Record<string, string>[]): Product[] {
   return rows
-    .filter(row => exactCol(row, 'Nama Produk').length > 1)
+    .filter(row => getCol(row, 'Nama Produk').length > 1)
     .map((row, i) => {
-      const rawPrice = exactCol(row, 'Harga E-Katalog (Inc PPN)');
-      const link = exactCol(row, 'Link E-Catalog');
+      const rawPrice = getCol(row, 'Harga E-Katalog (Inc PPN)');
+      const link = getCol(row, 'Link E-Catalog');
+      const rooms = ROOMS.filter(r => getCol(row, r).toUpperCase() === 'TRUE');
       return {
         no: i + 1,
-        supplier: exactCol(row, 'Supplier'),
-        kategori: exactCol(row, 'Kategori Supplier'),
-        name: exactCol(row, 'Nama Produk'),
-        satuan: exactCol(row, 'Satuan'),
-        vol1: exactCol(row, 'Volume R1'),
-        vol2: exactCol(row, 'Volume R2'),
+        supplier: getCol(row, 'Supplier'),
+        name: getCol(row, 'Nama Produk'),
         hargaInc: rawPrice ? toRupiah(rawPrice) : null,
         link: /^https?:\/\//i.test(link) ? link : null,
+        rooms,
       };
     });
 }
 
 export function ProductCatalog() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [suppliers, setSuppliers] = useState<string[]>([]);
-  const [search, setSearch] = useState('');
-  const [supplier, setSupplier] = useState('');
   const [status, setStatus] = useState<'loading' | 'ok' | 'error'>('loading');
+  const [activeRoom, setActiveRoom] = useState<string>('Semua');
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     Papa.parse<Record<string, string>>(CSV_URL, {
@@ -67,29 +79,49 @@ export function ProductCatalog() {
       skipEmptyLines: true,
       transformHeader: (h: string) => h.trim(),
       complete(results) {
-        const parsed = parseRows(results.data);
-        setProducts(parsed);
-        const sup = [...new Set(parsed.map(p => p.supplier).filter(Boolean))].sort();
-        setSuppliers(sup);
+        setProducts(parseRows(results.data));
         setStatus('ok');
       },
       error() { setStatus('error'); },
     });
   }, []);
 
-  const filtered = products.filter(p => {
-    const matchName = !search || p.name.toLowerCase().includes(search.toLowerCase());
-    const matchSup  = !supplier || p.supplier === supplier;
-    return matchName && matchSup;
-  });
+  const filtered = useMemo(() => products.filter(p => {
+    const matchRoom = activeRoom === 'Semua' || p.rooms.includes(activeRoom);
+    const matchSearch = !search ||
+      p.name.toLowerCase().includes(search.toLowerCase()) ||
+      p.supplier.toLowerCase().includes(search.toLowerCase());
+    return matchRoom && matchSearch;
+  }), [products, activeRoom, search]);
 
-  const hasVolumes = filtered.some(p => p.vol1 || p.vol2);
+  const tabs = ['Semua', ...ROOMS];
 
   return (
-    <div className="min-h-[60vh] bg-slate-50">
+    <div className="min-h-96 bg-slate-50">
 
-      {/* ── Controls bar ── */}
-      <div className="sticky top-18 z-40 bg-white border-b border-slate-200 shadow-sm">
+      {/* ── Room tabs ── */}
+      <div className="bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex gap-1 overflow-x-auto py-3" style={{ scrollbarWidth: 'none' }}>
+            {tabs.map(tab => (
+              <button
+                key={tab}
+                onClick={() => setActiveRoom(tab)}
+                className={`shrink-0 px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-150 whitespace-nowrap ${
+                  activeRoom === tab
+                    ? 'bg-[#1e3a8a] text-white shadow-sm'
+                    : 'text-slate-600 hover:bg-slate-100'
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── Search + count ── */}
+      <div className="bg-white border-b border-slate-100 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-3 flex flex-wrap gap-3 items-center">
           <div className="relative flex-1 min-w-50">
             <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none"
@@ -99,34 +131,16 @@ export function ProductCatalog() {
             </svg>
             <input
               type="text"
-              placeholder="Cari nama produk…"
+              placeholder="Cari nama produk atau supplier…"
               value={search}
               onChange={e => setSearch(e.target.value)}
               className="w-full pl-9 pr-3 py-2 text-sm border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/15 focus:bg-white"
             />
           </div>
-
-          <div className="relative">
-            <select
-              value={supplier}
-              onChange={e => setSupplier(e.target.value)}
-              className="appearance-none pl-3 pr-8 py-2 text-sm border border-slate-200 rounded-lg bg-slate-50 focus:outline-none focus:border-[#2563eb] focus:ring-2 focus:ring-[#2563eb]/15 cursor-pointer text-slate-700 min-w-42.5"
-            >
-              <option value="">Semua Supplier</option>
-              {suppliers.map(s => <option key={s} value={s}>{s}</option>)}
-            </select>
-            <svg className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none"
-              fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7"/>
-            </svg>
-          </div>
-
           {status === 'ok' && (
-            <p className="text-sm text-slate-500 ml-auto">
+            <p className="text-sm text-slate-500 ml-auto whitespace-nowrap">
               <strong className="text-[#1e3a8a]">{filtered.length}</strong>
-              {filtered.length !== products.length && (
-                <> dari <strong className="text-[#1e3a8a]">{products.length}</strong></>
-              )} produk
+              {filtered.length !== products.length && <> dari <strong className="text-[#1e3a8a]">{products.length}</strong></>} produk
             </p>
           )}
         </div>
@@ -156,7 +170,7 @@ export function ProductCatalog() {
 
       {/* ── Table ── */}
       {status === 'ok' && (
-        <div className="max-w-7xl mx-auto px-6 py-8">
+        <div className="max-w-7xl mx-auto px-6 py-6">
           {filtered.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-28 gap-3 text-center">
               <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center">
@@ -166,7 +180,7 @@ export function ProductCatalog() {
                 </svg>
               </div>
               <p className="font-semibold text-slate-700">Produk tidak ditemukan</p>
-              <p className="text-sm text-slate-400">Coba kata kunci atau filter yang berbeda</p>
+              <p className="text-sm text-slate-400">Coba kata kunci atau ruangan yang berbeda</p>
             </div>
           ) : (
             <div className="rounded-2xl border border-slate-200 overflow-hidden shadow-sm bg-white">
@@ -174,21 +188,16 @@ export function ProductCatalog() {
                 <table className="w-full text-sm border-collapse">
                   <thead>
                     <tr className="bg-[#1e3a8a] text-white">
-                      <th className="px-4 py-3.5 text-left font-semibold text-xs tracking-wide whitespace-nowrap w-12">#</th>
-                      <th className="px-4 py-3.5 text-left font-semibold text-xs tracking-wide whitespace-nowrap">Supplier</th>
+                      <th className="px-4 py-3.5 text-left font-semibold text-xs tracking-wide w-10">#</th>
+                      <th className="px-4 py-3.5 text-left font-semibold text-xs tracking-wide whitespace-nowrap">Principal</th>
                       <th className="px-4 py-3.5 text-left font-semibold text-xs tracking-wide">Nama Produk</th>
-                      <th className="px-4 py-3.5 text-left font-semibold text-xs tracking-wide whitespace-nowrap">Satuan</th>
-                      {hasVolumes && <>
-                        <th className="px-4 py-3.5 text-left font-semibold text-xs tracking-wide whitespace-nowrap">Vol. R1</th>
-                        <th className="px-4 py-3.5 text-left font-semibold text-xs tracking-wide whitespace-nowrap">Vol. R2</th>
-                      </>}
                       <th className="px-4 py-3.5 text-right font-semibold text-xs tracking-wide whitespace-nowrap">Harga E-Katalog (Inc. PPN)</th>
                       <th className="px-4 py-3.5 text-center font-semibold text-xs tracking-wide whitespace-nowrap">E-Katalog</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
                     {filtered.map((p, i) => (
-                      <tr key={i} className={i % 2 === 0 ? 'bg-white hover:bg-blue-50/40' : 'bg-slate-50/60 hover:bg-blue-50/40'} style={{ transition: 'background .1s' }}>
+                      <tr key={i} className={i % 2 === 0 ? 'bg-white hover:bg-blue-50/40' : 'bg-slate-50/60 hover:bg-blue-50/40'}>
                         <td className="px-4 py-3 text-slate-400 text-xs">{p.no}</td>
                         <td className="px-4 py-3 whitespace-nowrap">
                           <span className="inline-block text-[10px] font-bold tracking-wide uppercase text-[#2563eb] bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-full max-w-40 truncate">
@@ -196,22 +205,13 @@ export function ProductCatalog() {
                           </span>
                         </td>
                         <td className="px-4 py-3 text-slate-800 font-medium min-w-65 leading-snug">{p.name}</td>
-                        <td className="px-4 py-3 text-slate-500 whitespace-nowrap">{p.satuan || '—'}</td>
-                        {hasVolumes && <>
-                          <td className="px-4 py-3 text-slate-500 whitespace-nowrap">{p.vol1 || '—'}</td>
-                          <td className="px-4 py-3 text-slate-500 whitespace-nowrap">{p.vol2 || '—'}</td>
-                        </>}
                         <td className="px-4 py-3 text-right whitespace-nowrap font-bold text-[#1e3a8a]">
                           {p.hargaInc ?? <span className="text-slate-400 font-normal text-xs">—</span>}
                         </td>
                         <td className="px-4 py-3 text-center">
                           {p.link ? (
-                            <a
-                              href={p.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-block text-xs font-bold px-3 py-1.5 bg-[#1e3a8a] text-white rounded-lg hover:bg-[#142d54] transition-colors whitespace-nowrap"
-                            >
+                            <a href={p.link} target="_blank" rel="noopener noreferrer"
+                              className="inline-block text-xs font-bold px-3 py-1.5 bg-[#1e3a8a] text-white rounded-lg hover:bg-[#142d54] transition-colors whitespace-nowrap">
                               Lihat ↗
                             </a>
                           ) : (
