@@ -46,7 +46,7 @@ export function Footer() {
                   </svg>
                   <div>
                     <p className="text-slate-400 text-xs uppercase tracking-wider mb-0.5">WhatsApp</p>
-                    <a href="https://wa.me/6282114391159" className="text-slate-200 hover:text-white transition-colors">0821-1439-1159</a>
+                    <a href="https://wa.me/628218889883" className="text-slate-200 hover:text-white transition-colors">0821 888 9883</a>
                   </div>
                 </li>
               </ul>
@@ -72,8 +72,7 @@ export function Footer() {
                   Jakarta Selatan, DKI Jakarta 12950
                 </p>
                 <div className="text-xs space-y-1 pt-3 mt-3 border-t border-white/8 text-slate-400">
-                  <p>Phone: (021) 21689279</p>
-                  <p>Fax: (021) 21689279</p>
+                  <p>Phone: 0821 888 9883</p>
                 </div>
               </div>
 

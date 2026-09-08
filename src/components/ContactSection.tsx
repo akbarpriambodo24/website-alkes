@@ -21,14 +21,14 @@ export function ContactSection() {
                 <span className="text-2xl">☎️</span>
                 <div>
                   <p className="font-semibold text-gray-900">Telepon</p>
-                  <p>(0821-1439-1159)</p>
+                  <p>0821 888 9883</p>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
                 <span className="text-2xl">📱</span>
                 <div>
                   <p className="font-semibold text-gray-900">WhatsApp</p>
-                  <p>0821-1439-1159</p>
+                  <p>0821 888 9883</p>
                 </div>
               </div>
               <div className="flex items-center space-x-4">
@@ -48,7 +48,7 @@ export function ContactSection() {
               Tim kami akan menghubungi Anda dalam 1×24 jam.
             </p>
             <a
-              href="https://wa.me/6281234567890"
+              href="https://wa.me/628218889883"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block w-full bg-green-600 text-white text-center py-5 rounded-xl font-bold text-xl hover:bg-green-700 transition shadow-lg"
